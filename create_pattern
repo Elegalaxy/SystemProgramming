@@ -27,6 +27,7 @@ then
         printf "[a-z]"
     fi
 elif (($upper == 1))
+then
     start=`printf "%d" "'A"`; #Get character as number
     let start=$start+$count;
     if (($start > 90))
