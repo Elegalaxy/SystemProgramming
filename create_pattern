@@ -2,14 +2,14 @@
 upper=0
 for i in $@
 do
-    if (($i == "n")) #Useless
-    then
-        continue
-    fi
-
     if (($i == "u"))
     then
         let upper=1; #Check if we need to change upper case
+    fi
+
+    if (($i == "n")) #Useless
+    then
+        continue
     fi
 
     if (($i <= 26 && $i >= 0))
