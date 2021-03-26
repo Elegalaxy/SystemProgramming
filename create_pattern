@@ -2,14 +2,13 @@
 upper=0
 for i in $@
 do
-    if (($i == "n"))
+    if (($i == "n")) #Useless
     then
         continue
     fi
 
     if (($i == "u"))
     then
-        echo "TEST"
         let upper=1; #Check if we need to change upper case
     fi
 
@@ -19,8 +18,15 @@ do
     fi
 done
 
-if (($upper == 1))
+if (($count == 0 || $count == 26)) #Edge case
 then
+    if (($upper == 1))
+    then
+        printf "[A-Z]"
+    else
+        printf "[a-z]"
+    fi
+elif (($upper == 1))
     start=`printf "%d" "'A"`; #Get character as number
     let start=$start+$count;
     if (($start > 90))
@@ -28,7 +34,7 @@ then
         let start=$((start-26));
     fi
     let end=$start-1;
-    printf "[\x$(printf %x $start)"
+    printf "[\x$(printf %x $start)" #Print in special format
     printf "%cZA%c" '-' '-'
     printf "\x$(printf %x $end)]"
 else
