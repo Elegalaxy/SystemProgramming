@@ -1,47 +1,46 @@
 #!/bin/bash
-
-#str="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
-# str="abcdefghijklmnopqrstuvwxyz"
-read str
-count=0
-num=0
 upper=0
-
 for i in $@
 do
-    if [ $i = "-u" ]
+    if (($i == "n"))
     then
-        let upper=1;
+        continue
+    fi
+
+    if (($i == "u"))
+    then
+        echo "TEST"
+        let upper=1; #Check if we need to change upper case
     fi
 
     if (($i <= 26 && $i >= 0))
     then
-        let count=$i;
+        let count=$i; #Get the shifting position
     fi
 done
 
-for ((i = 0; i < ${#str}; i++))
-do
-    v=`printf "%d" "'${str:$i:1}"`;
-    if (( ($v >= 65 && $v <= 90) || ($v >= 97 && $v <= 122) ))
+if (($upper == 1))
+then
+    start=`printf "%d" "'A"`; #Get character as number
+    let start=$start+$count;
+    if (($start > 90))
     then
-        if (($upper == 1))
-        then
-            if (($v+$count <= 90))
-            then
-                let v=$v+$count;
-            else
-                let v=$v+$count-90+65-1;
-            fi
-        else
-            if (($v+$count <= 122))
-            then
-                let v=$v+$count;
-            else
-                let v=$v+$count-122+97-1;
-            fi
-        fi
+        let start=$((start-26));
     fi
-    printf "\x$(printf %x $v)"
-done
+    let end=$start-1;
+    printf "[\x$(printf %x $start)"
+    printf "%cZA%c" '-' '-'
+    printf "\x$(printf %x $end)]"
+else
+    start=`printf "%d" "'a"`;
+    let start=$start+$count;
+    if (($start > 122))
+    then
+        let start=$((start-26));
+    fi
+    let end=$start-1;
+    printf "[\x$(printf %x $start)"
+    printf "%cza%c" '-' '-'
+    printf "\x$(printf %x $end)]"
+fi
 echo
