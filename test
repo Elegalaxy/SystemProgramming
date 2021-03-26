@@ -1,0 +1,26 @@
+#!/bin/bash
+read -p "please input password:" password
+for ((i=0;i<${#password};i++))
+do
+  var2=printf "%d" "'${password:$i:1}"
+ if (([ $var2 -gt 96 ] && [ $var2 -lt 123 ])||([ $var2 -gt 65 ] && [ $var2 -lt 91 ])) 
+ then
+  if (([ $var2 -gt 65 ] && [ $var2 -lt 87 ])||([ $var2 -gt 96 ] && [ $var2 -lt 119 ]))
+  then
+   let var2=$var2+4
+   printf \xprintf %x $var2
+   #echo -n " "
+  fi
+  if (([ $var2 -gt 86 ] && [ $var2 -lt 91 ])||([ $var2 -gt 118 ] && [ $var2 -lt 123 ]))
+  then
+   let var2=$var2-22
+   printf \xprintf %x $var2
+   #echo -n " "
+  fi
+  echo -n " "
+ else 
+   printf \xprintf %x $var2
+   echo -n " "
+ fi
+done
+echo
