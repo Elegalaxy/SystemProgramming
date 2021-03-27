@@ -4,12 +4,14 @@
 #str="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
 # str="abcdefghijklmnopqrstuvwxyz"
 
-read str;
-
-pattern=$(./create_pattern $@) #Get the pattern
-if (( $# > 2 )) #Check if uppercase needed
-then
-    echo $str | tr '[A-Z]' $pattern
-else
-    echo $str | tr '[a-z]' $pattern
-fi
+DONE=false
+until $DONE ;do
+read str || DONE=true
+    pattern=$(./create_pattern $@) #Get the pattern
+    if (( $# > 2 )) #Check if uppercase needed
+    then
+        echo $str | tr '[A-Z]' $pattern
+    else
+        echo $str | tr '[a-z]' $pattern
+    fi
+done
