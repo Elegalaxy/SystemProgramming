@@ -7,5 +7,5 @@
 for ((i=1; i < 26; i++))
 do
     echo "Shift $i"
-    echo $( ./caesar -n < $1 )
+    echo $( ./caesar -u -n $i < $1 ) #Pass the file to caesar
 done

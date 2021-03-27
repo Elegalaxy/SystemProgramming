@@ -1,5 +1,0 @@
-DONE=false
-until $DONE ;do
-read || DONE=true
-echo $REPLY
-done

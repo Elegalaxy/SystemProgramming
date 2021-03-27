@@ -4,9 +4,9 @@
 #str="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
 # str="abcdefghijklmnopqrstuvwxyz"
 
-DONE=false
-until $DONE ;do
-read str || DONE=true
+done=false
+until $done ;do #Get input until EOF
+read str || done=true
     pattern=$(./create_pattern $@) #Get the pattern
     if (( $# > 2 )) #Check if uppercase needed
     then
