@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Test String
+#str="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
+# str="abcdefghijklmnopqrstuvwxyz"
+
+for ((i=1; i < 26; i++))
+do
+    echo "Shift $i"
+    for line in `cat $1`
+    do
+        ./caesar -n $i <<< $line
+    done
+done
