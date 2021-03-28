@@ -48,3 +48,4 @@ else
     printf "%cza%c" '-' '-'
     printf "\x$(printf %x $end)]"
 fi
+echo
